@@ -41,10 +41,20 @@ export default function NoteForm() {
   };
 
   const currentDraft = draft ?? initialDraft;
-  const formKey = `${currentDraft.title}-${currentDraft.content}-${currentDraft.tag}`;
 
   return (
-    <form key={formKey} className={css.form} onChange={handleChange} action={handleSubmit}>
+    <form
+      className={css.form}
+      onChange={handleChange}
+      action={handleSubmit}
+      onSubmit={e => {
+        const form = e.currentTarget;
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          form.reportValidity();
+        }
+      }}
+    >
       <div className={css.formGroup}>
         <label htmlFor="title">Title</label>
         <input
