@@ -87,11 +87,7 @@ export default function NotesClient({ tag }: Props) {
             />
           )}
 
-          <Link
-            href="/app/notes/action/create/page.tsx"
-            aria-label="Create new note"
-            className={css.button}
-          >
+          <Link href="/notes/action/create" aria-label="Create new note" className={css.button}>
             Create note +
           </Link>
         </header>

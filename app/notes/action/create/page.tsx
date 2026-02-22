@@ -1,5 +1,6 @@
 import NoteForm from '@/components/NoteForm/NoteForm';
 import { Metadata } from 'next';
+import css from './CreateNote.module.css';
 
 export const metadata: Metadata = {
   title: 'Create New Note',
@@ -17,9 +18,7 @@ export const metadata: Metadata = {
   },
 };
 
-const CreateNote = async () => {
-  const categories = await getCategories();
-
+export default function CreateNote() {
   return (
     <main className={css.main}>
       <div className={css.container}>
@@ -28,6 +27,4 @@ const CreateNote = async () => {
       </div>
     </main>
   );
-};
-
-export default CreateNote;
+}

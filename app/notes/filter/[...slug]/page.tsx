@@ -11,12 +11,12 @@ export async function generateMetadata({ params }: NotesPageProps): Promise<Meta
   const { slug } = await params;
   const tag = slug?.[0] ?? 'all';
   return {
-    title: `Notes - Filter: ${slug.join('/')} | NoteHub`,
+    title: `Notes - Filter: ${tag} | NoteHub`,
     description: `Browsing notes filtered by " ${tag} ". Manage your notes efficiently with NoteHub.`,
     openGraph: {
       type: 'website',
       url: `https://08-zustand-three-psi.vercel.app/notes/filter/${slug.join('/')}`,
-      title: `Notes - Filter: ${slug.join('/')} | NoteHub`,
+      title: `Notes - Filter: ${tag} | NoteHub`,
       description: `Browsing notes filtered by " ${tag} ". Manage your notes efficiently with NoteHub.`,
       images: [
         {
