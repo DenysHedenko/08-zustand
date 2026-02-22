@@ -7,10 +7,9 @@ import { useDebouncedCallback } from 'use-debounce';
 import SearchBox from '../../../../components/SearchBox/SearchBox';
 import Pagination from '../../../../components/Pagination/Pagination';
 import NoteList from '../../../../components/NoteList/NoteList';
-import Modal from '../../../../components/Modal/Modal';
-import NoteForm from '../../../../components/NoteForm/NoteForm';
 import { fetchNotes, type FetchNotesResponse } from '@/lib/api';
-import css from './NotesPage.module.css'
+import css from './NotesPage.module.css';
+import Link from 'next/link';
 
 interface Props {
   tag: string;
@@ -27,13 +26,8 @@ export default function NotesClient({ tag }: Props) {
   const [inputValue, setInputValue] = useState('');
   const [text, setText] = useState('');
 
-  // Pagination 
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Modal 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   const setUrlParams = (next: { search?: string; page?: number }) => {
     const params = new URLSearchParams(sp.toString());
@@ -52,7 +46,7 @@ export default function NotesClient({ tag }: Props) {
     router.push(qs ? `${pathname}?${qs}` : pathname);
   };
 
-  // debounce 
+  // debounce
   const debouncedApplySearch = useDebouncedCallback((value: string) => {
     const val = value.trim();
     setText(val);
@@ -93,21 +87,19 @@ export default function NotesClient({ tag }: Props) {
             />
           )}
 
-          <button className={css.button} onClick={openModal}>
+          <Link
+            href="/app/notes/action/create/page.tsx"
+            aria-label="Create new note"
+            className={css.button}
+          >
             Create note +
-          </button>
+          </Link>
         </header>
       </div>
 
       {(isLoading || isFetching) && <strong>Loading tasks ...</strong>}
 
       {notes.length > 0 && !isLoading && <NoteList notes={notes} />}
-
-      {isModalOpen && (
-        <Modal onClose={closeModal}>
-          <NoteForm onClose={closeModal} />
-        </Modal>
-      )}
     </>
   );
 }
