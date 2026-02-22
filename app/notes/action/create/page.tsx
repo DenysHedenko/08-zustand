@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Create a new note in NoteHub and organize your ideas efficiently.',
   openGraph: {
     type: 'website',
-    url: 'https://08-zustand-three-psi.vercel.app/notes/action/create/page.tsx',
+    url: 'https://08-zustand-three-psi.vercel.app/notes/action/create',
     title: 'Create New Note',
     description: 'Create a new note in NoteHub and organize your ideas efficiently.',
     images: [
